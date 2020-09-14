@@ -37,4 +37,8 @@ class DocumentContainingEmails:
 
     def sort_by_entry_count(self):
         self.email_dictionary = {address: count for address, count in sorted(self.email_dictionary.items(), key=lambda
-            item: item[1])}
+            item: item[1], reverse=True)}
+
+    def rank_and_remove(self, no_fewer_than):
+        self.sort_by_entry_count()
+        self.email_dictionary = {key: val for key, val in self.email_dictionary.items() if val > int(no_fewer_than)}
